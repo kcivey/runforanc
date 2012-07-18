@@ -1,7 +1,5 @@
 jQuery(function ($) {
 
-    $('#info p, #info div').hide();
-
     var deadline = new Date(1344459600000); // 5pm Aug 8
     $('.countdown').countdown({until: deadline});
 
@@ -9,6 +7,7 @@ jQuery(function ($) {
         var address = $('#address').val();
         evt.preventDefault();
         $('#info p, #info div').hide();
+        $('#info').removeClass('hide');
         $.ajax({
             url: '/findLocation',
             data: {str: address},

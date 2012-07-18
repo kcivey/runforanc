@@ -11,6 +11,11 @@
       body {
         padding-top: 60px; /* 60px to make the container go all the way to the bottom of the topbar */
       }
+      .countdown {
+        width: 240px;
+        height: 40px;
+        padding-top: 3px;
+      }
     </style>
     <link href="css/bootstrap-responsive.css" rel="stylesheet"/>
     <link href="css/jquery.countdown.css" rel="stylesheet"/>
@@ -40,35 +45,22 @@
           <div class="hero-unit">
             <h1>Run for ANC</h1>
           </div>
-          <span class="countdown"></span>
+          <div class="countdown"></div>
         </div>
         <div class="span6">
           <form action="/" id="form-anc" class="form-horizontal">
             Your address: <input type="text" id="address"/>
             <button type="submit" class="btn btn-primary">Search</button>
           </form>
-          <table class="table">
-            <tr>
-              <td>Address</td>
-              <td id="address-canonical"></td>
-            </tr>
-            <tr>
-              <td>Current SMD</td>
-              <td id="smd-2002"></td>
-            </tr>
-            <tr>
-              <td>Current Commissioner</td>
-              <td id="commissioner"></td>
-            </tr>
-            <tr>
-              <td>New SMD</td>
-              <td id="smd-2012"></td>
-            </tr>
-            <tr>
-              <td>Candidates</td>
-              <td id="candidates"></td>
-            </tr>
-          </table>
+          <div id="info">
+            <p id="address-found">Your address was recognized as <strong class="canonical-address"></strong>.</p>
+            <p id="address-not-found">Your address was not recognized.</p>
+            <p id="current-smd">Your current SMD is <strong class="smd-2002"></strong>, and your commissioner is <strong class="commissioner"></strong>.</p>
+            <p id="smd-changing">Your SMD will be changing to <strong class="smd-2012"></strong> as a result of redistricting.</p>
+            <p id="smd-not-changing">You will remain in the same SMD after redistricting.</p>
+            <div id="candidates">The candidates running in <span class="smd-2012"></span> are <ul></ul></div>
+            <p id="no-candidates">There are as yet no candidates running in <span class="smd-2012"></span>.</p>
+          </div>
         </div>
       </div>
     </div>

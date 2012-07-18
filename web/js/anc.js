@@ -6,7 +6,7 @@ jQuery(function ($) {
     $('#form-anc').submit(function (evt) {
         var address = $('#address').val();
         evt.preventDefault();
-        $('#info p, #info div').hide();
+        $('#info').children().hide();
         $('#info').removeClass('hide');
         $.ajax({
             url: '/findLocation',
@@ -88,9 +88,14 @@ jQuery(function ($) {
 
     function handleCandidatesResponse(data) {
         console.log('candidates', data);
-        var ul;
-        if (data.length) {
-            ul = $('#candidates ul').empty();
+        var n = data.length,
+            div, ul;
+        if (n) {
+            div = $('#candidates');
+            ul = div.find('ul').empty();
+            div.find('.number-candidates').text(n);
+            div.find('.candidate-plural').text(n == 1 ? '' : 's');
+            div.find('.candidate-verb').text(n == 1 ? 'is' : 'are');
             $.each(data, function (i, c) {
                 $('<li/>').text(fullName(c)).appendTo(ul);
             });

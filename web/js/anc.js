@@ -95,9 +95,13 @@ jQuery(function ($) {
             ul = div.find('ul').empty();
             div.find('.number-candidates').text(n);
             div.find('.candidate-plural').text(n == 1 ? '' : 's');
-            div.find('.candidate-verb').text(n == 1 ? 'is' : 'are');
+            div.find('.candidate-verb').text(n == 1 ? 'has' : 'have');
             $.each(data, function (i, c) {
-                $('<li/>').text(fullName(c)).appendTo(ul);
+                var text = fullName(c);
+                if (c.filing_date) {
+                    text += ' (filed)';
+                }
+                $('<li/>').text(text).appendTo(ul);
             });
             $('#candidates').show();
         }

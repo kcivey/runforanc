@@ -23,7 +23,6 @@ jQuery(function ($) {
         table.children().each(function (i, node) {
             data[node.tagName] = node.textContent;
         });
-        console.log('data', data);
         if (data.FULLADDRESS) {
             $('#info .canonical-address').text(data.FULLADDRESS);
             $('#address-found').show();
@@ -79,7 +78,6 @@ jQuery(function ($) {
     }
 
     function handleCommissionerResponse(data) {
-        console.log('commissioner', data);
         var c = data[0];
         if (c) {
             $('#info .commissioner').text(fullName(c));
@@ -87,7 +85,6 @@ jQuery(function ($) {
     }
 
     function handleCandidatesResponse(data) {
-        console.log('candidates', data);
         var n = data.length,
             div, ul;
         if (n) {

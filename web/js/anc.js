@@ -7,6 +7,9 @@ jQuery(function ($) {
         var address = $('#address').val(),
             button = $('button', this);
         evt.preventDefault();
+        if (!address) {
+            return; // don't search if empty
+        }
         button.text('Please Wait').attr('disabled', 'disabled');
         $('#info').children().hide();
         $('#info').removeClass('hide');

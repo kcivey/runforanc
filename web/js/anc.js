@@ -4,15 +4,18 @@ jQuery(function ($) {
     $('.countdown').countdown({until: deadline});
 
     $('#form-anc').submit(function (evt) {
-        var address = $('#address').val();
+        var address = $('#address').val(),
+            button = $('button', this);
         evt.preventDefault();
+        button.text('Please Wait').attr('disabled', 'disabled');
         $('#info').children().hide();
         $('#info').removeClass('hide');
         $.ajax({
             url: '/findLocation',
             data: {str: address},
             dataType: 'xml',
-            success: handleLocationResponse
+            success: handleLocationResponse,
+            complete: function () { button.text('Go').removeAttr('disabled'); }
         });
     });
 

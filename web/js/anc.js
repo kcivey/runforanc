@@ -36,21 +36,27 @@ jQuery(function ($) {
         else {
             $('#address-not-found').show();
         }
-        smd2002 = data.SMD_2002.replace('SMD ', '');
-        smd2012 = data.SMD_2012.replace('SMD ', '');
-        if (!smd2002.match(/^[1-8][A-Z][01]\d$/) || !smd2012.match(/^[1-8][A-Z][01]\d$/)) {
-            $.error("Can't find SMD");
+        if (!data.SMD_2002 || !data.SMD_2002.match(/^(SMD )?[1-8][A-M][01]\d$/)) {
+            $.error("Can't find current SMD");
             return;
         }
+        smd2002 = data.SMD_2002.replace('SMD ', '');
         $('#info .smd-2002').text(smd2002);
-        $('#info .smd-2012').text(smd2012);
         $('#current-smd').show();
-        if (smd2002 == smd2012) {
-            $('#smd-not-changing').show();
+        if (!data.SMD_2012) {
+            smd2012 = smd2002;
+            $('#smd-not-available').show();
         }
         else {
-            $('#smd-changing').show();
+            smd2012 = data.SMD_2012.replace('SMD ', '');
+            if (smd2002 == smd2012) {
+                $('#smd-not-changing').show();
+            }
+            else {
+                $('#smd-changing').show();
+            }
         }
+        $('#info .smd-2012').text(smd2012);
         query = "SELECT * FROM swdata WHERE smd = '" + smd2002 + "'";
         $.ajax({
             url: 'https://api.scraperwiki.com/api/1.0/datastore/sqlite',

@@ -16,14 +16,24 @@ jQuery(function ($) {
         $.ajax({
             url: '/findLocation',
             data: {str: address},
-            dataType: 'xml',
+            dataType: $.browser.msie ? 'text' : 'xml', // deal with IE bug
             success: handleLocationResponse,
             complete: function () { button.text('Go').removeAttr('disabled'); }
         });
     });
 
+    // From http://jeremyhixon.com/jquery-ajax-internet-explorer/
+    function parseXml(xml) {
+        if ($.browser.msie) {
+            var xmlDoc = new ActiveXObject('Microsoft.XMLDOM');
+            xmlDoc.loadXML(xml);
+            xml = xmlDoc;
+        }
+        return xml;
+    }
+
     function handleLocationResponse(xml) {
-        var table = $(xml).find('Table1'),
+        var table = $(parseXml(xml)).find('Table1'),
             data = {},
             smd2002, smd2012, query;
         table.children().each(function (i, node) {

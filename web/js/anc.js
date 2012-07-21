@@ -68,7 +68,17 @@ jQuery(function ($) {
         }
         ward = smd2012.substr(0, 1);
         anc = smd2012.substr(0, 2);
-        url = 'http://ancdc.us/Ward%20' + ward + '%20ANC%20' + anc + '%202013%20Boundaries.pdf';
+        // Argh, inconsistent ancdc.us URLs:
+        if (ward == 4) {
+            url = 'Ward 4 ANC ' + anc + ' 2013 ANC and SMD Boundaries';
+        }
+        else if (ward == 5) {
+            url = 'Ward5 ANC ' + anc + ' Boundaries';
+        }
+        else {
+            url = 'Ward ' + ward + ' ANC ' + anc + ' 2013 Boundaries';
+        }
+        url = 'http://ancdc.us/' + encodeURIComponent(url) + '.pdf';
         $('#info .smd-2012').text(smd2012);
         $('#info .anc').text(anc);
         $('a.map').attr('href', url);

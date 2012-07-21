@@ -35,7 +35,7 @@ jQuery(function ($) {
     function handleLocationResponse(xml) {
         var table = $(parseXml(xml)).find('Table1'),
             data = {},
-            smd2002, smd2012, query;
+            smd2002, smd2012, ward, anc, url, query;
         table.children().each(function (i, node) {
             data[node.tagName] = node.textContent;
         });
@@ -66,7 +66,12 @@ jQuery(function ($) {
                 $('#smd-changing').show();
             }
         }
+        ward = smd2012.substr(0, 1);
+        anc = smd2012.substr(0, 2);
+        url = 'http://ancdc.us/Ward%20' + ward + '%20ANC%20' + anc + '%202013%20Boundaries.pdf';
         $('#info .smd-2012').text(smd2012);
+        $('#info .anc').text(anc);
+        $('a.map').attr('href', url);
         query = "SELECT * FROM swdata WHERE smd = '" + smd2002 + "'";
         $.ajax({
             url: 'https://api.scraperwiki.com/api/1.0/datastore/sqlite',

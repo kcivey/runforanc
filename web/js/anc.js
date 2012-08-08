@@ -1,7 +1,11 @@
 jQuery(function ($) {
 
     var deadline = new Date(1344459600000); // 5pm Aug 8
-    $('.countdown').countdown({until: deadline});
+    $('.countdown').countdown({
+        until: deadline,
+        alwaysExpire: true,
+        expiryText: 'The filing deadline has passed, but you could still run as a write-in.'
+    });
 
     $('#form-anc').submit(function (evt) {
         var address = $('#address').val(),

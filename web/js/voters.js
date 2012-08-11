@@ -1,17 +1,23 @@
 jQuery(function ($) {
 
     $('#form-search').submit(function (evt) {
-        var q = $('#q').val(),
+        var searchData = {},
             button = $('button', this);
         evt.preventDefault();
-        if (!q) {
-            return; // don't search if empty
+        $.each(['q', 'name', 'address'], function (i, name) {
+            var value = $('#' + name).val();
+            if (value) {
+                searchData[name] = value;
+            }
+        });
+        if ($.isEmptyObject(searchData)) {
+            return; // don't search if no search terms
         }
         button.text('Please Wait').attr('disabled', 'disabled');
         $('#results').empty();
         $.ajax({
             url: 'http://' + window.location.host + ':3000/search',
-            data: {q: q},
+            data: searchData,
             dataType: 'jsonp',
             success: handleResults,
             complete: function () { button.text('Search').removeAttr('disabled'); }

@@ -12,14 +12,14 @@
       body {
         padding-top: 60px; /* to make the container go all the way to the bottom of the topbar */
       }
-      .countdown {
-        width: 240px;
-        height: 40px;
-        padding-top: 3px;
-        border: none;
-      }
       #result-div {
         min-height: 300px;
+      }
+      #form-search .control-label {
+        width: 80px;
+      }
+      #form-search .controls {
+        margin-left: 100px;
       }
       .navbar p {
         line-height: 19px;
@@ -63,14 +63,23 @@
                 <input type="search" name="q" id="q"/>
                 <button type="submit" class="btn btn-primary">Search</button>
               </p>
-              <!--
+              <p>Or use one or both of these fields (does a prefix search for
+                names, so <code>richards</code> will match "Richardson" and
+                <code>connect</code> will match "Connecticut Ave").</p>
               <div class="control-group">
-                <label class="control-label" for="lastname">Last name</label>
+                <label class="control-label" for="name">Name</label>
                 <div class="controls">
-                  <input type="text" name="lastname" id="lastname"/>
+                  <input type="text" name="name" id="name"/>
+                  <p class="help-block"><i>Last name</i> or <i>last, first</i></p>
                 </div>
               </div>
-              -->
+              <div class="control-group">
+                <label class="control-label" for="address">Address</label>
+                <div class="controls">
+                  <input type="text" name="address" id="address"/>
+                  <p class="help-block"><i>House number</i> (optional) followed by <i>street name</i></p>
+                </div>
+              </div>
             </form>
           </div>
           <p><a href="files/">Raw files</a></p>

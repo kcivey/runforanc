@@ -14,7 +14,7 @@ jQuery(function ($) {
             return; // don't search if no search terms
         }
         button.text('Please Wait').attr('disabled', 'disabled');
-        $('#results').empty();
+        $('#results, #explanation').empty();
         $.ajax({
             url: 'http://' + window.location.host + ':3000/search',
             data: searchData,
@@ -26,11 +26,13 @@ jQuery(function ($) {
 
     function handleResults(data) {
         var tbody = $('#results'),
-            rowTemplate = _.template($('#row-template').html());
-        $('#result-div table').toggleClass('hide', data.length ? false : true);
-        $('#none-found').toggleClass('hide', data.length ? true : false);
-        $.each(data, function (i, r) {
+            rowTemplate = _.template($('#row-template').html())
+            results = data.results;
+        $('#result-div table').toggleClass('hide', results.length ? false : true);
+        $('#none-found').toggleClass('hide', results.length ? true : false);
+        $.each(results, function (i, r) {
             tbody.append(rowTemplate(r));
         });
+        $('#explanation').append(data.explanation).removeClass('hide');
     }
 });

@@ -62,14 +62,17 @@
               -->
             </form>
           </div>
+          <p><a href="files/">Raw files</a></p>
         </div>
         <div class="span6" id="result-div">
           <table class="table table-condensed table-striped hide">
             <thead>
-              <th>Last</th>
-              <th>First</th>
+              <th>Name</th>
               <th>Address</th>
+              <th>Ward</th>
+              <th>Date</th>
               <th>Status</th>
+              <th>ID</th>
             </thead>
             <tbody id="results"></tbody>
           </table>
@@ -101,10 +104,12 @@
     <script src="/js/voters.js"></script>
     <script type="text/template" id="row-template">
       <tr>
-        <td><%- lastname %></td>
-        <td><%- firstname %></td>
+        <td><%- lastname %>, <%- firstname %><%- middle ? ' ' + middle : '' %><%- suffix ? ', ' + suffix : '' %></td>
         <td><%- res_house %><%- res_frac%> <%- res_street %><%- res_apt ? ' #' + res_apt : '' %></td>
+        <td><%- ward %></td>
+        <td><%- registered %></td>
         <td><%- status %></td>
+        <td><%- voter_id %></td>
       </tr>
     </script>
   </body>

@@ -47,11 +47,22 @@
 
     <div class="container-fluid">
       <div class="row-fluid">
-        <div class="span4">
+        <div class="span5">
           <div class="well">
             <form action="/" id="form-search" class="form-horizontal">
-              <input type="search" name="q" id="q"/>
-              <button type="submit" class="btn btn-primary">Search</button></p>
+              <p>
+                Type words or numbers from the voter's name or street address.
+                Records matching all terms will be ranked higher in the results,
+                to require a match for a particular term, precede it with a
+                plus sign. So <code>bryan weaver</code> will return records with
+                either "bryan" or "weaver" (and prefer records that have both),
+                while <code>bryan +weaver</code> will absolutely require
+                "weaver" in the record.
+              </p>
+              <p>
+                <input type="search" name="q" id="q"/>
+                <button type="submit" class="btn btn-primary">Search</button>
+              </p>
               <!--
               <div class="control-group">
                 <label class="control-label" for="lastname">Last name</label>
@@ -64,7 +75,7 @@
           </div>
           <p><a href="files/">Raw files</a></p>
         </div>
-        <div class="span8" id="result-div">
+        <div class="span7" id="result-div">
           <table class="table table-condensed table-striped hide">
             <thead>
               <th>Name</th>

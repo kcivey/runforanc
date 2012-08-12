@@ -4,7 +4,7 @@ jQuery(function ($) {
 
     $('#form-search').submit(function (evt) {
         var searchData = {},
-            button = $('button', this),
+            button = $('#search-button'),
             resetButton = function () {
                 button.text('Search').removeAttr('disabled');
             },

@@ -1,5 +1,7 @@
 jQuery(function ($) {
 
+    var rowTemplate = _.template($('#row-template').html());
+
     $('#form-search').submit(function (evt) {
         var searchData = {},
             button = $('button', this),
@@ -42,11 +44,21 @@ jQuery(function ($) {
 
     function handleResults(data) {
         var tbody = $('#results'),
-            rowTemplate = _.template($('#row-template').html())
             results = data.results;
         $('#result-div table').toggleClass('hide', results.length ? false : true);
         $('#none-found').toggleClass('hide', results.length ? true : false);
         $.each(results, function (i, r) {
+            r.name = r.lastname + ', ' + r.firstname;
+            if (r.middle) {
+                r.name += ' ' + r.middle;
+            }
+            if (r.suffix) {
+                r.name += ', ' + r.suffix;
+            }
+            r.address = r.res_house + r.res_frac + ' ' + r.res_street;
+            if (r.res_apt) {
+                r.address += ' #' + r.res_apt;
+            }
             tbody.append(rowTemplate(r));
         });
         $('#explanation').append(data.explanation).removeClass('hide');

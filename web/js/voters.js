@@ -15,7 +15,7 @@ jQuery(function ($) {
             timeoutHandle;
         evt.preventDefault();
         $.each(['q', 'name', 'address'], function (i, name) {
-            var value = $('#' + name).val();
+            var value = $.trim($('#' + name).val());
             if (value) {
                 searchData[name] = value;
             }

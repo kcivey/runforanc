@@ -136,9 +136,6 @@ jQuery(function ($) {
             div.find('.candidate-verb').text(n == 1 ? 'has' : 'have');
             $.each(data, function (i, c) {
                 var text = fullName(c);
-                if (c.filing_date) {
-                    text += ' (filed)';
-                }
                 $('<li/>').text(text).appendTo(ul);
             });
             $('#candidates').show();

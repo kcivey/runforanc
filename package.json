@@ -1,0 +1,23 @@
+{
+  "name": "runforanc",
+  "version": "2.0.0",
+  "description": "Elections for advisory neighborhood commissions in Washington, DC",
+  "main": "index.js",
+  "dependencies": {
+    "tabula-js": "github:kcivey/tabula-js"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kcivey/runforanc.git"
+  },
+  "author": "Keith C. Ivey <keith@iveys.org>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/kcivey/runforanc/issues"
+  },
+  "homepage": "https://github.com/kcivey/runforanc#readme"
+}

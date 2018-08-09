@@ -4,6 +4,8 @@
   "description": "Elections for advisory neighborhood commissions in Washington, DC",
   "main": "index.js",
   "dependencies": {
+    "csv-parse": "^2.5.0",
+    "lodash": "^4.17.10",
     "tabula-js": "github:kcivey/tabula-js"
   },
   "devDependencies": {},

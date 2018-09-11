@@ -20,16 +20,19 @@ stream
             return;
         }
         record = parse(line, {columns: columnNames})[0] || {};
-        if (record.name == null || record.name === 'Name') {
+        if (!record.name || record.name === 'Name') {
             return;
         }
         smd = record.ancSmd;
         if (!candidatesBySmd[smd]) {
             candidatesBySmd[smd] = [];
         }
+        delete record.ancSmd;
         candidatesBySmd[smd].push(record);
     })
     .done(function () {
+        console.log(candidatesBySmd);
+    /*
         var competitivenessCount = [];
         _.each(candidatesBySmd, function (candidates, smd) {
             var competitiveness = candidates.filter(function (c) { return c.name; }).length;
@@ -39,6 +42,5 @@ stream
             competitivenessCount[competitiveness]++;
         });
         console.log(competitivenessCount);
+     */
     });
-
-// 2A08 3D06 3D10 3F04 4A07 4B05
